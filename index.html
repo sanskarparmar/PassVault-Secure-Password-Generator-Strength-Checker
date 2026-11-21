@@ -1,0 +1,232 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#10091b">
+    <meta name="description" content="PassVault - A secure password generator and password strength checker.">
+
+    <title>PassVault | Password Generator</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main class="app">
+
+        <header class="top-header">
+            <a href="#" class="brand">
+                <span class="brand-icon">P</span>
+                <span>PassVault</span>
+            </a>
+
+            <button class="theme-btn" id="themeToggle" aria-label="Toggle theme">
+                ☀
+            </button>
+        </header>
+
+        <section class="hero">
+            <span class="eyebrow">YOUR PERSONAL SECURITY TOOL</span>
+            <h1>Password Generator</h1>
+            <p>Create unique, strong passwords to protect your digital world.</p>
+        </section>
+
+        <section class="generator-card">
+
+            <div class="card-heading">
+                <div>
+                    <h2>Create your password</h2>
+                    <p>Customize your password settings below.</p>
+                </div>
+
+                <span class="shield-icon">◆</span>
+            </div>
+
+            <div class="length-heading">
+                <label for="length">Password length</label>
+                <span id="lengthValue">16</span>
+            </div>
+
+            <input
+                type="range"
+                id="length"
+                min="4"
+                max="64"
+                value="16"
+            >
+
+            <div class="range-labels">
+                <span>4 characters</span>
+                <span>64 characters</span>
+            </div>
+
+            <div class="options-heading">
+                <h3>Character options</h3>
+
+                <label class="advanced-toggle">
+                    <input type="checkbox" id="advancedToggle">
+                    <span>Advanced</span>
+                </label>
+            </div>
+
+            <div class="options-grid">
+
+                <label class="option-card">
+                    <input type="checkbox" id="uppercase" checked>
+                    <span class="checkmark"></span>
+                    <span class="option-info">
+                        <strong>Uppercase</strong>
+                        <small>A – Z</small>
+                    </span>
+                </label>
+
+                <label class="option-card">
+                    <input type="checkbox" id="lowercase" checked>
+                    <span class="checkmark"></span>
+                    <span class="option-info">
+                        <strong>Lowercase</strong>
+                        <small>a – z</small>
+                    </span>
+                </label>
+
+                <label class="option-card">
+                    <input type="checkbox" id="numbers" checked>
+                    <span class="checkmark"></span>
+                    <span class="option-info">
+                        <strong>Numbers</strong>
+                        <small>0 – 9</small>
+                    </span>
+                </label>
+
+                <label class="option-card">
+                    <input type="checkbox" id="symbols" checked>
+                    <span class="checkmark"></span>
+                    <span class="option-info">
+                        <strong>Symbols</strong>
+                        <small>! @ # $ %</small>
+                    </span>
+                </label>
+
+            </div>
+
+            <div class="advanced-panel" id="advancedPanel">
+
+                <label class="simple-option">
+                    <input type="checkbox" id="excludeSimilar">
+                    Exclude similar characters (i, l, 1, O, 0)
+                </label>
+
+                <label class="simple-option">
+                    <input type="checkbox" id="excludeDuplicates">
+                    Exclude duplicate characters
+                </label>
+
+            </div>
+
+            <button class="generate-btn" id="generateBtn">
+                <span>✦</span> Generate Password
+            </button>
+
+            <div class="result-wrapper">
+                <input
+                    type="text"
+                    id="passwordOutput"
+                    placeholder="Your password will appear here"
+                    readonly
+                    aria-label="Generated password"
+                >
+
+                <button id="copyBtn" class="copy-btn">
+                    Copy
+                </button>
+            </div>
+
+            <p id="message" class="message" aria-live="polite">
+                Your generated password will appear above.
+            </p>
+
+            <div class="strength-section">
+                <div class="strength-heading">
+                    <span>Password strength</span>
+                    <strong id="strengthText">Not generated</strong>
+                </div>
+
+                <div class="strength-track">
+                    <div id="strengthFill"></div>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <section class="checker">
+
+                <div class="checker-heading">
+                    <div>
+                        <h2>Password checker</h2>
+                        <p>Already have a password? Test its strength.</p>
+                    </div>
+
+                    <span class="checker-icon">⌁</span>
+                </div>
+
+                <div class="checker-input">
+                    <input
+                        type="password"
+                        id="checkPassword"
+                        placeholder="Enter your password..."
+                        autocomplete="off"
+                    >
+
+                    <button id="showPassword" type="button">
+                        Show
+                    </button>
+                </div>
+
+                <h3 class="requirements-title">Security requirements</h3>
+
+                <div class="requirements-grid">
+
+                    <div class="requirement" id="reqLength">
+                        <span>○</span> 8+ characters
+                    </div>
+
+                    <div class="requirement" id="reqUpper">
+                        <span>○</span> Uppercase letter
+                    </div>
+
+                    <div class="requirement" id="reqLower">
+                        <span>○</span> Lowercase letter
+                    </div>
+
+                    <div class="requirement" id="reqNumber">
+                        <span>○</span> Number
+                    </div>
+
+                    <div class="requirement" id="reqSymbol">
+                        <span>○</span> Special character
+                    </div>
+
+                </div>
+
+                <div class="suggestion-box">
+                    <span class="suggestion-icon">✧</span>
+                    <p id="suggestion">
+                        Start typing to receive password suggestions.
+                    </p>
+                </div>
+
+            </section>
+
+        </section>
+
+        <footer>
+            <p>Made with care by <strong>PassVault</strong></p>
+            <span>Passwords stay in your browser. Never sent to a server.</span>
+        </footer>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
